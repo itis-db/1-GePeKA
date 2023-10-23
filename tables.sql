@@ -12,6 +12,23 @@ create table activity (
 	parentid integer references activity (activityid)
 );
 
+create table program (
+	programid integer primary key references activity (activityid),
+	indexnum integer,
+	yearstart integer,
+	yearfinish integer
+);
+
+create table subprogram (
+	subprogramid integer primary key references activity (activityid),
+	indexnum integer
+);
+
+create table project (
+	projectid integer primary key references activity (activityid),
+	targetdescr varchar
+);
+
 create table area (
 	areaid integer primary key,
 	name varchar not null
@@ -26,21 +43,4 @@ create table point (
 	pointid integer primary key references activity (activityid),
 	plandate date not null,
 	factdate date
-);
-
-create table program (
-	programid integer primary key references activity (activityid),
-	indexnum integer,
-	yearstart integer,
-	yearfinish integer
-);
-
-create table project (
-	projectid integer primary key references activity (activityid),
-	targetdescr varchar
-);
-
-create table subprogram (
-	subprogramid integer primary key references activity (activityid),
-	indexnum integer
 );
